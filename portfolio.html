@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>P.J. Sneha | Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #faf7f2;
+    --warm-white: #f5f0e8;
+    --teal: #2a7d6f;
+    --teal-light: #3a9d8f;
+    --teal-pale: #e8f4f2;
+    --gold: #c9a84c;
+    --charcoal: #1e2a2a;
+    --mid: #4a5a58;
+    --light: #8a9a98;
+    --border: #d5e0de;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--charcoal);
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1rem 3rem;
+    background: rgba(250,247,242,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem; font-weight: 600; letter-spacing: 0.05em;
+    color: var(--teal);
+  }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    font-size: 0.8rem; font-weight: 500; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--mid); text-decoration: none;
+    transition: color 0.3s;
+  }
+  .nav-links a:hover { color: var(--teal); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: grid; grid-template-columns: 1fr 1fr;
+    align-items: center; gap: 4rem;
+    padding: 8rem 6rem 4rem;
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; top: -10%; right: -5%;
+    width: 55%; height: 120%;
+    background: linear-gradient(135deg, var(--teal-pale) 0%, #d4eee9 100%);
+    border-radius: 30% 0 0 40%;
+    z-index: 0;
+  }
+  .hero-text { position: relative; z-index: 1; }
+  .hero-tag {
+    display: inline-block;
+    font-size: 0.72rem; font-weight: 600; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--teal);
+    border: 1px solid var(--teal); padding: 0.35rem 0.9rem;
+    border-radius: 2rem; margin-bottom: 1.5rem;
+  }
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3rem, 5vw, 4.5rem);
+    font-weight: 300; line-height: 1.1; color: var(--charcoal);
+    margin-bottom: 0.5rem;
+  }
+  .hero h1 em { font-style: italic; color: var(--teal); }
+  .hero-subtitle {
+    font-size: 1rem; color: var(--mid); font-weight: 400;
+    margin-bottom: 2rem; line-height: 1.6;
+  }
+  .hero-bio {
+    font-size: 0.9rem; color: var(--mid); line-height: 1.8;
+    max-width: 480px; margin-bottom: 2.5rem;
+  }
+
+  /* BUTTONS */
+  .social-buttons { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    padding: 0.7rem 1.4rem; border-radius: 2rem;
+    font-size: 0.78rem; font-weight: 600; letter-spacing: 0.08em;
+    text-transform: uppercase; text-decoration: none;
+    transition: all 0.3s ease; cursor: pointer;
+  }
+  .btn-primary {
+    background: var(--teal); color: white;
+    box-shadow: 0 4px 20px rgba(42,125,111,0.3);
+  }
+  .btn-primary:hover {
+    background: var(--teal-light); transform: translateY(-2px);
+    box-shadow: 0 8px 28px rgba(42,125,111,0.4);
+  }
+  .btn-outline {
+    border: 1.5px solid var(--teal); color: var(--teal); background: transparent;
+  }
+  .btn-outline:hover { background: var(--teal); color: white; transform: translateY(-2px); }
+  .btn-dark { background: var(--charcoal); color: white; }
+  .btn-dark:hover { background: #2e3f3f; transform: translateY(-2px); }
+  .btn svg { width: 16px; height: 16px; }
+
+  /* HERO IMAGE */
+  .hero-image { position: relative; z-index: 1; display: flex; justify-content: center; }
+  .photo-frame { position: relative; width: 340px; height: 420px; }
+  .photo-frame::before {
+    content: '';
+    position: absolute; inset: -8px;
+    border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
+    background: linear-gradient(135deg, var(--gold), var(--teal));
+    z-index: -1;
+  }
+  .photo-frame img {
+    width: 100%; height: 100%; object-fit: cover; object-position: center top;
+    border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
+    display: block;
+  }
+  .photo-badge {
+    position: absolute; bottom: 20px; right: -20px;
+    background: white; border-radius: 1rem; padding: 0.8rem 1.2rem;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+    font-size: 0.75rem; font-weight: 600; color: var(--charcoal); line-height: 1.4;
+  }
+  .photo-badge span { display: block; color: var(--teal); font-size: 1.2rem; font-weight: 700; }
+
+  /* SECTIONS */
+  section { padding: 5rem 6rem; }
+  .section-label {
+    font-size: 0.72rem; font-weight: 600; letter-spacing: 0.25em;
+    text-transform: uppercase; color: var(--teal); margin-bottom: 0.75rem;
+  }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 3.5vw, 3rem); font-weight: 300;
+    color: var(--charcoal); margin-bottom: 3rem; line-height: 1.2;
+  }
+
+  /* SKILLS */
+  .skills-section { background: var(--warm-white); }
+  .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; }
+  .skill-card {
+    background: white; border-radius: 1rem; padding: 1.5rem;
+    border: 1px solid var(--border); transition: all 0.3s ease;
+  }
+  .skill-card:hover {
+    border-color: var(--teal); transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(42,125,111,0.12);
+  }
+  .skill-cat {
+    font-size: 0.68rem; font-weight: 600; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--teal); margin-bottom: 0.75rem;
+  }
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .skill-tag {
+    background: var(--teal-pale); color: var(--teal);
+    padding: 0.25rem 0.65rem; border-radius: 1rem;
+    font-size: 0.75rem; font-weight: 500;
+  }
+
+  /* EXPERIENCE */
+  .exp-card {
+    background: white; border-radius: 1.2rem; padding: 2rem;
+    border: 1px solid var(--border); margin-bottom: 1.5rem; transition: all 0.3s;
+  }
+  .exp-card:hover { box-shadow: 0 8px 32px rgba(0,0,0,0.08); border-color: var(--teal); }
+  .exp-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem; flex-wrap: wrap; gap: 0.5rem; }
+  .exp-role { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-weight: 600; color: var(--charcoal); }
+  .exp-company { font-size: 0.85rem; color: var(--teal); font-weight: 500; margin-top: 0.2rem; }
+  .exp-date { font-size: 0.75rem; color: var(--light); background: var(--warm-white); padding: 0.3rem 0.8rem; border-radius: 1rem; }
+  .exp-list { list-style: none; }
+  .exp-list li { font-size: 0.88rem; color: var(--mid); padding: 0.3rem 0; padding-left: 1.2rem; position: relative; line-height: 1.6; }
+  .exp-list li::before { content: '→'; position: absolute; left: 0; color: var(--teal); font-size: 0.75rem; }
+
+  /* PROJECTS */
+  .projects-section { background: var(--charcoal); }
+  .projects-section .section-label { color: var(--gold); }
+  .projects-section .section-title { color: white; }
+  .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
+  .project-card {
+    background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 1.2rem; padding: 2rem; transition: all 0.3s;
+  }
+  .project-card:hover {
+    background: rgba(255,255,255,0.09); border-color: var(--teal-light);
+    transform: translateY(-4px);
+  }
+  .project-num { font-family: 'Cormorant Garamond', serif; font-size: 3rem; font-weight: 300; color: rgba(201,168,76,0.3); line-height: 1; margin-bottom: 1rem; }
+  .project-title { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; color: white; margin-bottom: 0.5rem; }
+  .project-tech { font-size: 0.73rem; color: var(--teal-light); letter-spacing: 0.08em; margin-bottom: 1rem; text-transform: uppercase; }
+  .project-desc { font-size: 0.84rem; color: rgba(255,255,255,0.6); line-height: 1.7; }
+
+  /* EDUCATION */
+  .edu-card {
+    display: flex; gap: 2rem; align-items: flex-start;
+    background: white; border-radius: 1.2rem; padding: 2rem;
+    border: 1px solid var(--border); margin-bottom: 1.5rem; transition: all 0.3s;
+  }
+  .edu-card:hover { border-color: var(--teal); box-shadow: 0 8px 32px rgba(0,0,0,0.08); }
+  .edu-icon {
+    width: 48px; height: 48px; background: var(--teal-pale); border-radius: 0.75rem;
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 1.4rem;
+  }
+  .edu-degree { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; color: var(--charcoal); }
+  .edu-college { font-size: 0.85rem; color: var(--mid); margin: 0.3rem 0; }
+  .edu-score { display: inline-block; background: var(--teal); color: white; padding: 0.2rem 0.7rem; border-radius: 1rem; font-size: 0.75rem; font-weight: 600; }
+
+  /* CERTS */
+  .certs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; }
+  .cert-item {
+    display: flex; align-items: center; gap: 1rem;
+    background: white; border: 1px solid var(--border); border-radius: 0.75rem; padding: 1rem 1.2rem;
+    transition: all 0.3s;
+  }
+  .cert-item:hover { border-color: var(--teal); }
+  .cert-icon { font-size: 1.5rem; }
+  .cert-name { font-size: 0.85rem; font-weight: 500; color: var(--charcoal); }
+
+  /* CONTACT */
+  .contact-section { background: linear-gradient(135deg, var(--teal) 0%, #1a5a50 100%); }
+  .contact-section .section-label { color: rgba(255,255,255,0.6); }
+  .contact-section .section-title { color: white; }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; }
+  .contact-text { font-size: 1rem; color: rgba(255,255,255,0.8); line-height: 1.8; }
+  .contact-buttons { display: flex; flex-direction: column; gap: 1rem; }
+  .contact-btn {
+    display: flex; align-items: center; gap: 1rem;
+    background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 0.75rem; padding: 1rem 1.5rem;
+    text-decoration: none; color: white; transition: all 0.3s;
+  }
+  .contact-btn:hover { background: rgba(255,255,255,0.2); transform: translateX(4px); }
+  .contact-btn-icon { font-size: 1.4rem; }
+  .contact-btn-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; opacity: 0.7; }
+  .contact-btn-value { font-size: 0.9rem; font-weight: 500; }
+
+  /* FOOTER */
+  footer {
+    text-align: center; padding: 2rem; background: var(--charcoal);
+    font-size: 0.78rem; color: rgba(255,255,255,0.4);
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .hero-text > * { animation: fadeUp 0.8s ease both; }
+  .hero-tag { animation-delay: 0.1s; }
+  .hero h1 { animation-delay: 0.2s; }
+  .hero-subtitle { animation-delay: 0.3s; }
+  .hero-bio { animation-delay: 0.4s; }
+  .social-buttons { animation-delay: 0.5s; }
+  .hero-image { animation: fadeUp 0.8s ease 0.3s both; }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; padding: 7rem 2rem 3rem; text-align: center; }
+    .hero::before { display: none; }
+    .hero-image { order: -1; }
+    .photo-frame { width: 240px; height: 300px; }
+    .hero-bio { max-width: 100%; margin-inline: auto; }
+    .social-buttons { justify-content: center; }
+    section { padding: 3rem 2rem; }
+    .contact-grid { grid-template-columns: 1fr; }
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { gap: 1rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">P.J. Sneha</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="about">
+  <div class="hero-text">
+    <div class="hero-tag">✦ MCA Graduate · Web Developer</div>
+    <h1>P.J. <em>Sneha</em></h1>
+    <p class="hero-subtitle">Crafting digital experiences with code & creativity</p>
+    <p class="hero-bio">
+      I have completed my Master of Computer Applications (MCA) in 2026 with a strong interest in Web Development. Skilled in HTML, CSS, JavaScript, Python, and MySQL, with hands-on experience in AWS Cloud and GitHub. Eager to contribute to real-world projects and build meaningful digital solutions.
+    </p>
+    <div class="social-buttons">
+      <a href="https://www.linkedin.com/in/sneha-pj-989725358/" target="_blank" class="btn btn-primary">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+        LinkedIn
+      </a>
+      <a href="mailto:pjsneha03@gmail.com" class="btn btn-outline">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,12 2,6"/></svg>
+        Email Me
+      </a>
+      <a href="https://github.com/pjsneha03" target="_blank" class="btn btn-dark">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+        GitHub
+      </a>
+    </div>
+  </div>
+
+  <div class="hero-image">
+    <div class="photo-frame">
+      <img src="IMG-20231113-WA0029.jpg" alt="P.J. Sneha">
+      <div class="photo-badge">
+        <span>87.5%</span>
+        MCA · 2026
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section class="skills-section" id="skills">
+  <p class="section-label">What I Know</p>
+  <h2 class="section-title">Technical Skills</h2>
+  <div class="skills-grid">
+    <div class="skill-card">
+      <div class="skill-cat">Programming</div>
+      <div class="skill-tags"><span class="skill-tag">Python</span></div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-cat">Web Development</div>
+      <div class="skill-tags">
+        <span class="skill-tag">HTML</span>
+        <span class="skill-tag">CSS</span>
+        <span class="skill-tag">JavaScript</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-cat">Database</div>
+      <div class="skill-tags"><span class="skill-tag">MySQL</span></div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-cat">Cloud</div>
+      <div class="skill-tags">
+        <span class="skill-tag">AWS EC2</span>
+        <span class="skill-tag">S3</span>
+        <span class="skill-tag">IAM</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-cat">Tools & OS</div>
+      <div class="skill-tags">
+        <span class="skill-tag">Git</span>
+        <span class="skill-tag">GitHub</span>
+        <span class="skill-tag">VS Code</span>
+        <span class="skill-tag">Linux</span>
+        <span class="skill-tag">Bash</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-cat">Languages</div>
+      <div class="skill-tags">
+        <span class="skill-tag">English</span>
+        <span class="skill-tag">Tamil</span>
+        <span class="skill-tag">Sourashtra</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <p class="section-label">Work</p>
+  <h2 class="section-title">Internship Experience</h2>
+  <div class="exp-card">
+    <div class="exp-header">
+      <div>
+        <div class="exp-role">Junior Developer Intern</div>
+        <div class="exp-company">Magfrai Technologies</div>
+      </div>
+      <div class="exp-date">Dec 2025 – Jun 2026</div>
+    </div>
+    <ul class="exp-list">
+      <li>Worked on real-time development tasks in a professional environment</li>
+      <li>Assisted in software development and testing workflows</li>
+      <li>Followed secure coding practices and maintained data confidentiality</li>
+    </ul>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section class="projects-section" id="projects">
+  <p class="section-label">Portfolio</p>
+  <h2 class="section-title">Academic Projects</h2>
+  <div class="projects-grid">
+    <div class="project-card">
+      <div class="project-num">01</div>
+      <div class="project-title">Portfolio Website</div>
+      <div class="project-tech">HTML · CSS · JavaScript · AWS</div>
+      <div class="project-desc">
+        Developed a responsive personal portfolio website with smooth scrolling and form validation. Deployed on AWS EC2 for production hosting.
+      </div>
+    </div>
+    <div class="project-card">
+      <div class="project-num">02</div>
+      <div class="project-title">Learning Management System</div>
+      <div class="project-tech">PHP · MySQL · HTML · CSS · JavaScript</div>
+      <div class="project-desc">
+        Web-based LMS managing students, faculty, and academic data. Implemented secure authentication, student login, faculty management, and assignment modules.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <p class="section-label">Academic Background</p>
+  <h2 class="section-title">Education</h2>
+  <div class="edu-card">
+    <div class="edu-icon">🎓</div>
+    <div>
+      <div class="edu-degree">Master of Computer Applications (MCA)</div>
+      <div class="edu-college">Sourashtra College, Madurai &nbsp;·&nbsp; 2024–2026</div>
+      <div class="edu-score">87.5%</div>
+    </div>
+  </div>
+
+  <p class="section-label" style="margin-top:2.5rem">Credentials</p>
+  <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:300;margin-bottom:1.5rem;color:var(--charcoal)">Certifications & Workshops</h3>
+  <div class="certs-grid">
+    <div class="cert-item"><span class="cert-icon">🏅</span><span class="cert-name">Red Hat System Administration I (RH124)</span></div>
+    <div class="cert-item"><span class="cert-icon">🎨</span><span class="cert-name">UI/UX Design Internship – Nativeva</span></div>
+    <div class="cert-item"><span class="cert-icon">📡</span><span class="cert-name">IoT Workshop (2025)</span></div>
+    <div class="cert-item"><span class="cert-icon">📊</span><span class="cert-name">Power BI & Data Visualization (2025)</span></div>
+    <div class="cert-item"><span class="cert-icon">🖌️</span><span class="cert-name">UI/UX Workshop (2024)</span></div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
+  <p class="section-label">Get In Touch</p>
+  <h2 class="section-title">Let's Connect</h2>
+  <div class="contact-grid">
+    <div class="contact-text">
+      I'm currently open to new opportunities and collaborations. Whether you have a project in mind or just want to connect — my inbox is always open!
+    </div>
+    <div class="contact-buttons">
+      <a href="mailto:pjsneha03@gmail.com" class="contact-btn">
+        <span class="contact-btn-icon">✉️</span>
+        <div>
+          <div class="contact-btn-label">Email</div>
+          <div class="contact-btn-value">pjsneha03@gmail.com</div>
+        </div>
+      </a>
+      <a href="https://www.linkedin.com/in/sneha-pj-989725358/" target="_blank" class="contact-btn">
+        <span class="contact-btn-icon">💼</span>
+        <div>
+          <div class="contact-btn-label">LinkedIn</div>
+          <div class="contact-btn-value">sneha-pj-989725358</div>
+        </div>
+      </a>
+      <a href="https://github.com/pjsneha03" target="_blank" class="contact-btn">
+        <span class="contact-btn-icon">🐙</span>
+        <div>
+          <div class="contact-btn-label">GitHub</div>
+          <div class="contact-btn-value">pjsneha03</div>
+        </div>
+      </a>
+      <a href="tel:9123559902" class="contact-btn">
+        <span class="contact-btn-icon">📞</span>
+        <div>
+          <div class="contact-btn-label">Phone</div>
+          <div class="contact-btn-value">+91 9123559902</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 P.J. Sneha · Designed & Built with ♥ in Madurai</p>
+</footer>
+
+</body>
+</html>
